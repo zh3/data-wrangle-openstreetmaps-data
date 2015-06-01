@@ -1,0 +1,44 @@
+# Top 5 user contributions
+db.nc.aggregate([
+	{'$group': {'_id': '$created.user', 'count': {'$sum': 1}}},
+	{'$sort': {'count': -1}},
+	{'$limit': 5}
+])
+
+# Total user contributions
+db.nc.count({'created.user': {'$exists': true}})
+
+# Percentage user contributions
+db.nc.aggregate([
+	{'$group': {'_id': '$created.user', 'count': {'$sum': 1}}},
+	{'$project': {'percentage': {'$multiply': [{'$divide': ['$count', 1024972]}, 100]}}},
+	{'$sort': {'percentage': -1}},
+	{'$limit': 5}
+])
+
+# Most frequent amenities
+db.nc.aggregate([
+	{'$match': {'amenity': {'$exists': true}}},
+	{'$group': {'_id': '$amenity', 'count': {'$sum': 1}}},
+	{'$sort': {'count': -1}},
+	{'$limit': 10}
+])
+
+# Biggest fast food chains
+db.nc.aggregate([
+	{'$match': {'amenity': {'$eq': 'fast_food'}, 'name': {'$exists': true}}},
+	{'$group': {'_id': '$name', 'count': {'$sum': 1}}},
+	{'$sort': {'count': -1}},
+	{'$limit': 10}
+])
+
+# Restaurants or cafes by cuisine
+db.nc.aggregate([
+	{'$match': {'$or': [
+		{'amenity': {'$eq': 'restaurant'}, 'cuisine': {'$exists': true}},
+		{'amenity': {'$eq': 'cafe'}, 'cuisine': {'$exists': true}},
+	]}},
+	{'$group': {'_id': '$cuisine', 'count': {'$sum': 1}}},
+	{'$sort': {'count': -1}},
+	{'$limit': 5}
+])
