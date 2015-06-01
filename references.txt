@@ -1,0 +1,6 @@
+Udacity sample project: https://docs.google.com/document/d/1F0Vs14oNEs2idFJR3C_OPxwS6L0HPliOii-QpbmrMo4/pub
+MongoDB Aggregation Docs: http://docs.mongodb.org/manual/reference/operator/aggregation/
+Regular Expression Repeat: http://www.regular-expressions.info/repeat.html
+Python RE docs: https://docs.python.org/2/library/re.html#re.match
+MongoImport doc: http://docs.mongodb.org/manual/reference/program/mongoimport/
+Royal mail postcodes explanation: http://web.archive.org/web/20120716211307/http://www.royalmail.com/delivery/mail-advice/postcodes-addresses-explained
